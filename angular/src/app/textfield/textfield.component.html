@@ -1,3 +1,5 @@
 <div>
-    <input type="text"  [placeholder]="placeholder" #titleInput>
+    <input type="text"  
+    (keydown.enter)="focusNextInput()"
+    [placeholder]="placeholder" #titleInput>
 </div>
