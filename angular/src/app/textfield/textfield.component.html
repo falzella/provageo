@@ -1,6 +1,9 @@
 <div>
-    <input type="text"  
+    <input [attr.type]="type"
+    [attr.type]="css"  
     (keydown.enter)="focusNextInput()"
     [placeholder]="placeholder" #titleInput
-    [(ngModel)]="inputValue">
+    [(ngModel)]="inputValue"
+    [ngClass]="{'input-error': cambiacss}">
+    
 </div>

@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TextfieldComponent } from './textfield/textfield.component';
 import { ButtonComponent } from './button/button.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { ButtonComponent } from './button/button.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule // Add this line
+    FormsModule,
+    HttpClientModule, // Add this line
   ],
   providers: [],
   bootstrap: [AppComponent]

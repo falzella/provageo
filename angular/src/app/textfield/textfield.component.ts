@@ -11,7 +11,9 @@ export class TextfieldComponent {
 
   @Input() placeholder: string = '';
   inputValue: string = ''; // Questa variabile conterrà il valore inserito nell'input
-
+  @Input() type: string = 'text'; // Default to 'text'
+  @Input() css: string = 'input'; // Default to 'text'
+  cambiacss=false;
   @ViewChild('textInput', { static: false }) textInput: ElementRef | undefined;
 
 
@@ -21,6 +23,12 @@ export class TextfieldComponent {
 
   resetValue(){
     this.inputValue = '';
+  }
+
+  cambia(v: boolean){
+
+    this.cambiacss=v;
+
   }
 
 

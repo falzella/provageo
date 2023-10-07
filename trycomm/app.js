@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
     }
   });
 
-app.get("/welcome", (req, res) => {
+app.post("/welcome", (req, res) => {
     try {
       console.log("aia");
       // Create a JSON payload and send it as the response
@@ -37,7 +37,7 @@ app.get("/welcome", (req, res) => {
     }
   });
 
-app.get("/calcolo", (req, res) => {
+app.post("/calcolo", (req, res) => {
     try {
       console.log("sto calcolando...");
       const lat1 = req.body.lat1;
