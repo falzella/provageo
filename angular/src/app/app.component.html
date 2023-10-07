@@ -3,21 +3,21 @@
 </div>
 
 <div style="width: 15%; margin-left: 5%; margin-top: 10%;">
-  <app-textfield placeholder="Latitudine 1"></app-textfield>
+  <app-textfield #l1 placeholder="Latitudine 1"></app-textfield>
 </div>
 
 <div style="width: 15%; margin-left: 5%; margin-top: 0%;">
-  <app-textfield placeholder="Longitudine 1"></app-textfield>
+  <app-textfield #lo1 placeholder="Longitudine 1"></app-textfield>
 </div>
 
 <div style="width: 15%; margin-left: 5%; margin-top: 2.5%;">
-  <app-textfield placeholder="Latitudine 2"></app-textfield>
+  <app-textfield #l2 placeholder="Latitudine 2"></app-textfield>
 </div>
 
 <div style="width: 15%; margin-left: 5%; margin-top: 0%;">
-  <app-textfield placeholder="Longitudine 2"></app-textfield>
+  <app-textfield #lo2 placeholder="Longitudine 2"></app-textfield>
 </div>
 
 <div style="width: 15%; display: flex; justify-content: center; align-items: center; margin-left: 5%; margin-top: 2%; background-color: red;" >
-  <app-button></app-button>
+  <app-button (click) = "mostraDistanza(getValue(l1.inputValue), getValue(lo1.inputValue), getValue(l2.inputValue), getValue(lo2.inputValue))"></app-button>
 </div>

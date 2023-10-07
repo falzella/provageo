@@ -13,4 +13,8 @@ export class AppComponent {
     return val;
   }
 
+  public mostraDistanza(l1: string, lo1:string, l2:string, lo2:string){
+    console.log(l1 + " " + lo1 + " " + l2 + " " + lo2 + " ");
+  }
+
 }

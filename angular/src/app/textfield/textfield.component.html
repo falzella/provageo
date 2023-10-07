@@ -1,5 +1,6 @@
 <div>
     <input type="text"  
     (keydown.enter)="focusNextInput()"
-    [placeholder]="placeholder" #titleInput>
+    [placeholder]="placeholder" #titleInput
+    [(ngModel)]="inputValue">
 </div>
