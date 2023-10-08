@@ -2,8 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders} from "@angular/common/http";
 import { TextfieldComponent } from "../app/textfield/textfield.component";
 
-// import { ToastrService } from "ngx-toastr";
-// import { CustomToastrService } from "../custom-toastr.service";
+import { ToastrService } from "ngx-toastr";
+import { CustomToastrService } from "custom-toastr.service";
 
 @Component({
   selector: 'app-root',
@@ -21,53 +21,115 @@ export class AppComponent {
   textL2!: TextfieldComponent;
   @ViewChild("lo2", { static: false })
   textLo2!: TextfieldComponent;
+  responseText: string | null = null; // Property to store the response body
+  responseNumber: number = 0;
 
   constructor(    private http: HttpClient,
     
-    // private toastr: ToastrService,
-    // private customToastrService: CustomToastrService
+    private toastr: ToastrService,
+    private customToastrService: CustomToastrService
     ){}
 
   getValue(val: string) {
     return val;
   }
 
+  // onTextFieldKeyPress(event: KeyboardEvent, l1: any, lo1: any, l2: any, lo2: any) {
+  //   if (event.key === 'Enter' && this.textLo2.inputValue!="") { // Verifica se il tasto premuto è "Invio"
+  //     event.preventDefault();
+
+  //     this.mostraDistanza(l1, lo1, l2, lo2);
+  //   }else{
+  //     //checkEmpty();
+  //   }
+  // }
+
   public mostraDistanza(l1: string, lo1:string, l2:string, lo2:string){
     console.log(l1 + " " + lo1 + " " + l2 + " " + lo2 + " ");
 
+    if(l1==="" || lo1==="" || l2==="" || lo2===""){
+      if (l1 === "") {
+        this.textL1.cambia(true);
+  
+        setTimeout(() => {
+          this.textL1.cambia(false);
+        }, 400);
+      }
+  
+      if (lo1 === "") {
+        this.textLo1.cambia(true);
+  
+        setTimeout(() => {
+          this.textLo1.cambia(false);
+        }, 400);
+      }
+  
+      if (l2 === "") {
+       this.textL2.cambia(true);
+  
+        setTimeout(() => {
+          this.textL2.cambia(false);
+        }, 400);
+      }
+  
+      if (lo2 === "") {
+       this.textLo2.cambia(true);
+  
+        setTimeout(() => {
+          this.textLo2.cambia(false);
+        }, 400);
+      }
 
-    if (l1 === "") {
-      this.textL1.cambia(true);
-
-      setTimeout(() => {
-        this.textL1.cambia(false);
-      }, 400);
+      this.toastr.error("Compila tutti i campi","", {
+        positionClass: "toast-bottom-right",
+      });
+      
+      return;
     }
 
-    if (lo1 === "") {
-      this.textLo1.cambia(true);
+    if (!this.isValidNumber(l1) || !this.isValidNumber(lo1) || !this.isValidNumber(l2) || !this.isValidNumber(lo2)) {
+      
+      if(!this.isValidNumber(l1)){
+        this.textL1.cambia(true);
+  
+        setTimeout(() => {
+          this.textL1.cambia(false);
+        }, 400);
+      }
 
-      setTimeout(() => {
-        this.textLo1.cambia(false);
-      }, 400);
+      if(!this.isValidNumber(lo1)){
+        this.textLo1.cambia(true);
+  
+        setTimeout(() => {
+          this.textLo1.cambia(false);
+        }, 400);
+      }
+
+            if(!this.isValidNumber(l2)){
+        this.textL2.cambia(true);
+  
+        setTimeout(() => {
+          this.textL2.cambia(false);
+        }, 400);
+      }
+
+      if(!this.isValidNumber(lo2)){
+        this.textLo2.cambia(true);
+  
+        setTimeout(() => {
+          this.textLo2.cambia(false);
+        }, 400);
+      }
+
+                  
+      this.toastr.error("Inserisci numeri validi.","", {
+        positionClass: "toast-bottom-right",
+      });
+
+      console.log("Invalid input. Please enter valid numbers.");
+      return;
     }
-
-    if (l2 === "") {
-     this.textL2.cambia(true);
-
-      setTimeout(() => {
-        this.textL2.cambia(false);
-      }, 400);
-    }
-
-    if (lo2 === "") {
-     this.textLo2.cambia(true);
-
-      setTimeout(() => {
-        this.textLo2.cambia(false);
-      }, 400);
-    }
-
+    
     // Create an HttpHeaders object with the "Access-Control-Allow-Origin" and "Content-Type" headers
     const headers = new HttpHeaders({
       "Access-Control-Allow-Origin": "*",
@@ -101,10 +163,16 @@ export class AppComponent {
           console.log(response);
 
           if (response.status === 200) {
-            // this.toastr.success("Calolco effettuato", "!", {
-            //   positionClass: "toast-bottom-right",
-            // });
+            this.responseNumber = response.body as number;
+            const km = this.responseNumber/1000;
+            const kmMiles = km * 0.62137273664981;
+            this.responseText = `<b>${km.toFixed(3)}</b> KM or <br><b>${(kmMiles.toFixed(3))}</b> Miles or <br><b>${this.responseNumber.toFixed(3)}</b> meters`;
+            
             console.log("Ok - calcolo effettuato");
+            // this.textL1.resetValue();
+            // this.textLo1.resetValue();
+            // this.textL2.resetValue();
+            // this.textLo2.resetValue();
 
           }
         },
@@ -116,5 +184,10 @@ export class AppComponent {
       });
   }
 
+
+  private isValidNumber(value: string): boolean {
+    // Use JavaScript's isNaN function to check if the value is a valid number
+    return !isNaN(parseFloat(value));
+  }
 
   }
