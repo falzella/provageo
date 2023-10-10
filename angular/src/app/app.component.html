@@ -28,10 +28,10 @@
   </ng-container>
 </div>
 
-
 <div style="width: 55%; height: 50%; margin-left: 35%; margin-top: -23%;" *ngIf="mapVisible">
-  <app-map></app-map>
+  <app-map [lat1]="getValueN(l1.inputValue)" [lng1]="getValueN(lo1.inputValue)" [lat2]="getValueN(l2.inputValue)" [lng2]="getValueN(lo2.inputValue)"></app-map>
 </div>
+
 
 
 

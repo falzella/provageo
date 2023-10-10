@@ -24,6 +24,7 @@ export class AppComponent {
   responseText: string | null = null; // Property to store the response body
   responseNumber: number = 0;
   mapVisible = false;
+  
 
 
   constructor(    private http: HttpClient,
@@ -35,6 +36,14 @@ export class AppComponent {
   getValue(val: string) {
     return val;
   }
+
+
+  getValueN(val: string): number {
+    // Use a regular expression to match and extract numeric characters
+    const numericValue = parseFloat(val.replace(/[^0-9.-]/g, ''));
+    return isNaN(numericValue) ? 0 : numericValue; // Handle cases where the result is not a valid number
+  }
+  
 
   // onTextFieldKeyPress(event: KeyboardEvent, l1: any, lo1: any, l2: any, lo2: any) {
   //   if (event.key === 'Enter' && this.textLo2.inputValue!="") { // Verifica se il tasto premuto è "Invio"
@@ -131,6 +140,9 @@ export class AppComponent {
       console.log("Invalid input. Please enter valid numbers.");
       return;
     }
+
+    this.updateMap();
+
     
     // Create an HttpHeaders object with the "Access-Control-Allow-Origin" and "Content-Type" headers
     const headers = new HttpHeaders({
@@ -191,5 +203,14 @@ export class AppComponent {
     // Use JavaScript's isNaN function to check if the value is a valid number
     return !isNaN(parseFloat(value));
   }
+
+
+    // Function to update the map with new coordinates
+  private updateMap() {
+      this.mapVisible = false; // Hide the map
+      setTimeout(() => {
+        this.mapVisible = true; // Show the map again
+      });
+    }
 
   }
