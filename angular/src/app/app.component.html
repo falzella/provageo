@@ -28,13 +28,11 @@
   </ng-container>
 </div>
 
-<div style=" width: 55%; height: 50%; margin-left: 35%; margin-top: -23%; background-color: red;">
+
+<div style="width: 55%; height: 50%; margin-left: 35%; margin-top: -23%;" *ngIf="mapVisible">
   <app-map></app-map>
 </div>
 
-<div style="width: 55%; height: 50%; margin-left: 35%; margin-top: -23%; background-color: red;">
-  <app-map *ngIf="responseText !== null"></app-map>
-</div>
 
 
 

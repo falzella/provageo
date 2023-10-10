@@ -23,6 +23,8 @@ export class AppComponent {
   textLo2!: TextfieldComponent;
   responseText: string | null = null; // Property to store the response body
   responseNumber: number = 0;
+  mapVisible = false;
+
 
   constructor(    private http: HttpClient,
     
@@ -167,7 +169,7 @@ export class AppComponent {
             const km = this.responseNumber/1000;
             const kmMiles = km * 0.62137273664981;
             this.responseText = `<b>${km.toFixed(3)}</b> KM or <br><b>${(kmMiles.toFixed(3))}</b> Miles or <br><b>${this.responseNumber.toFixed(3)}</b> meters`;
-            
+            this.mapVisible = true;
             console.log("Ok - calcolo effettuato");
             // this.textL1.resetValue();
             // this.textLo1.resetValue();
