@@ -180,7 +180,7 @@ export class AppComponent {
             this.responseNumber = response.body as number;
             const km = this.responseNumber/1000;
             const kmMiles = km * 0.62137273664981;
-            this.responseText = `<b>${km.toFixed(3)}</b> KM or <br><b>${(kmMiles.toFixed(3))}</b> Miles or <br><b>${this.responseNumber.toFixed(3)}</b> meters`;
+            this.responseText = `<b>${km.toFixed(3)}</b> KM o <br><b>${(kmMiles.toFixed(3))}</b> Miglia o <br><b>${this.responseNumber.toFixed(3)}</b> metri`;
             this.mapVisible = true;
             console.log("Ok - calcolo effettuato");
             // this.textL1.resetValue();

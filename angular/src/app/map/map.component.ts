@@ -92,8 +92,8 @@ export class MapComponent implements OnInit {
           'line-cap': 'round',
         },
         paint: {
-          'line-color': '#888',
-          'line-width': 8,
+          'line-color': 'red',
+          'line-width': 2,
         },
       });
     });
