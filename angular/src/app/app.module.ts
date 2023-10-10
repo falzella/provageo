@@ -9,13 +9,15 @@ import { TextfieldComponent } from './textfield/textfield.component';
 import { ButtonComponent } from './button/button.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MapComponent } from './map/map.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TextfieldComponent,
-    ButtonComponent
+    ButtonComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
